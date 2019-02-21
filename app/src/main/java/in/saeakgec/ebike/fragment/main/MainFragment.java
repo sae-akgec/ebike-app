@@ -1,4 +1,4 @@
-package in.saeakgec.ebike.fragment;
+package in.saeakgec.ebike.fragment.main;
 
 
 import android.os.Bundle;
