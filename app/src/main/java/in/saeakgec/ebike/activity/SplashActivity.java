@@ -67,8 +67,10 @@ public class SplashActivity extends AppCompatActivity {
     Intent authIntent = new Intent(SplashActivity.this, AuthActivity.class);
         if (b){
            startActivity(mainIntent);
+           finish();
         }else{
             startActivity(authIntent);
+            finish();
         }
     }
 
