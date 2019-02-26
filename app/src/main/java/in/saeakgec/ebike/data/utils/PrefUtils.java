@@ -13,7 +13,8 @@ public class PrefUtils {
 
     public static void storeToken(Context context, String apiKey) {
         SharedPreferences.Editor editor = getSharedPreferences(context).edit();
-        editor.putString("Token", apiKey);
+        editor.putString("Token", "JWT " + apiKey);
+        editor.apply();
         editor.commit();
     }
 
