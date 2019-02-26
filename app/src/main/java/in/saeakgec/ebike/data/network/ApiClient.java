@@ -21,7 +21,7 @@ public class ApiClient {
     private static OkHttpClient okHttpClient;
 
     public static Retrofit getClient(Context context) {
-        String BASE_URL = "http://www.sae-akgec.in";
+        String BASE_URL = "http://192.168.43.222:8000/";
 
         if (okHttpClient == null)
             initOkHttp(context);

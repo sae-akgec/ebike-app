@@ -57,7 +57,7 @@ public class SignInFragment extends Fragment {
         startActivity(forgetpass);
     }
     public void checkAuth2(){
-        apiService.checkAuth2()
+        apiService.checkAuth()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<Response<Object>>() {

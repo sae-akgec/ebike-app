@@ -11,4 +11,7 @@ public interface ApiService {
     @GET("/api/user/profile/")
     Single<Response<Object>> checkAuth();
 
+    @GET("/api/bikes")
+    Single<Response<Object>> getAllbikes();
+
 }

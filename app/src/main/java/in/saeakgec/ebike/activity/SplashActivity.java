@@ -31,6 +31,8 @@ public class SplashActivity extends AppCompatActivity {
     ProgressBar progressBar;
 
     private ApiService apiService;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
