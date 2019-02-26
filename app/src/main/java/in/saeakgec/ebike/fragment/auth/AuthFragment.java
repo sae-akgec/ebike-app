@@ -38,23 +38,12 @@ public class AuthFragment extends Fragment {
 
     @OnClick(R.id.auth_auth_signin)
     void signIn(){
-        Toast.makeText(getActivity(), "Sample", Toast.LENGTH_SHORT).show();
         authFragmentListener.signIn();
     }
 
     @OnClick(R.id.auth_auth_phone)
     void signUp(){
         authFragmentListener.signUp();
-    }
-
-    @OnClick(R.id.auth_auth_phone)
-    void google(){
-        authFragmentListener.google();
-    }
-
-    @OnClick(R.id.auth_auth_phone)
-    void facebook(){
-        authFragmentListener.facebook();
     }
 
 }

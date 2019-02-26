@@ -18,6 +18,6 @@ public class PrefUtils {
     }
 
     public static String getToken(Context context) {
-        return getSharedPreferences(context).getString("Token", null);
+        return getSharedPreferences(context).getString("Token", "");
     }
 }

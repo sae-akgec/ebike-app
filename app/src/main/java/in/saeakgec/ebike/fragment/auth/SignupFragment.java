@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import in.saeakgec.ebike.R;
+import in.saeakgec.ebike.listener.SignupFragmentListener;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SignupFragment extends Fragment {
 
+    private SignupFragmentListener signupFragmentListener;
 
     public SignupFragment() {
         // Required empty public constructor
@@ -27,4 +29,7 @@ public class SignupFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_signup, container, false);
     }
 
+    public void setSignupFragmentListener(SignupFragmentListener signupFragmentListener) {
+        this.signupFragmentListener = signupFragmentListener;
+    }
 }

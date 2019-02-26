@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import in.saeakgec.ebike.data.utils.PrefUtils;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -54,8 +55,8 @@ public class ApiClient {
                 Request original = chain.request();
                 Request.Builder requestBuilder = original.newBuilder()
                         .addHeader("Accept", "application/json")
-                        .addHeader("Content-Type", "application/json");
-
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Authorization", PrefUtils.getToken(context));
 
                 Request request = requestBuilder.build();
                 return chain.proceed(request);
