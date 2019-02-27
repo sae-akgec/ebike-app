@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_bikes_swipe_container"
     tools:context=".fragment.main.MainFragment">
 
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_bikes_recyclerView"
-        android:background="@color/colorBackground" />
+        android:id="@+id/main_bikes_recyclerView" />
 
 
-</FrameLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

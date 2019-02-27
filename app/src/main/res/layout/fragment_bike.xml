@@ -19,7 +19,7 @@
             android:id="@+id/bike_main_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@color/colorSecondary"
+            android:src="@color/colorPrimaryDark"
             app:civ_border_color="@color/colorBackground"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"

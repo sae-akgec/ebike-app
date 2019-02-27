@@ -22,7 +22,7 @@ public class ApiClient {
     private static OkHttpClient okHttpClient;
 
     public static Retrofit getClient(Context context) {
-        String BASE_URL = "http://192.168.43.222:8000/";
+        String BASE_URL = "http://192.168.0.107:8000/";
 
         if (okHttpClient == null)
             initOkHttp(context);
@@ -53,6 +53,7 @@ public class ApiClient {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request original = chain.request();
+
                 Request.Builder requestBuilder = original.newBuilder()
                         .addHeader("Accept", "application/json")
                         .addHeader("Content-Type", "application/json")

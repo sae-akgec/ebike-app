@@ -48,4 +48,6 @@ dependencies {
     // Image Library
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.facebook.fresco:fresco:1.12.1'
+    implementation 'com.facebook.fresco:animated-gif:1.12.1'
 }
