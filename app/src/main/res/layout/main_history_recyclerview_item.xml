@@ -6,18 +6,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     card_view:cardCornerRadius="20dp"
     android:layout_margin="10dp"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/main_history_item_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_launcher_background"
-            app:civ_border_color="@color/colorPrimary"
+            fresco:roundAsCircle="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorBlack"
             app:layout_constraintLeft_toRightOf="@+id/main_history_item_avatar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,13 +42,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text=" opened the bike "
+            android:text=" at "
             app:layout_constraintLeft_toRightOf="@+id/main_history_item_name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
         <TextView
-            android:id="@+id/main_history_item_bike_name"
+            android:id="@+id/main_history_item_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -58,6 +59,20 @@
             android:text="LCustom 1"
 
             />
+
+        <TextView
+            android:id="@+id/main_history_item_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="25dp"
+            android:padding="7dp"
+            android:text="Know More"
+            android:background="@color/colorPrimaryDark"
+            android:textStyle="bold"/>
 
     </android.support.constraint.ConstraintLayout>
 

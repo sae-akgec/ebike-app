@@ -1,6 +1,7 @@
 package in.saeakgec.ebike.data.network;
 
 import in.saeakgec.ebike.data.models.DriverBikeModel;
+import in.saeakgec.ebike.data.models.DriverHistoryModel;
 import in.saeakgec.ebike.data.models.ListModel;
 import in.saeakgec.ebike.data.models.RegisterModel;
 import in.saeakgec.ebike.data.models.SignInModel;
@@ -26,5 +27,8 @@ public interface ApiService {
 
     @GET("/api/user/bikes")
     Single<Response<ListModel<DriverBikeModel>>> getAllbikes();
+
+    @GET("/api/user/history")
+    Single<Response<ListModel<DriverHistoryModel>>> getAllhistory();
 
 }
