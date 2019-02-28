@@ -3,6 +3,9 @@
     package="in.saeakgec.ebike">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -13,17 +16,33 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.RequestActivity"></activity>
         <activity android:name=".activity.ShareActivity" />
-        <activity android:name=".activity.ConnectActivity" />
-        <activity android:name=".activity.BikeActivity" />
-        <activity android:name=".activity.AuthActivity" />
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.ConnectActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.BikeActivity" />
+        <activity android:name=".activity.AuthActivity" />
+        <activity android:name=".activity.SplashActivity">
+
+        </activity>
         <activity android:name=".activity.MainActivity" />
+
+        <service android:name=".services.GeofenceTransitionsJobIntentService" />
+
+        <receiver
+            android:name=".services.GeofenceBroadcastReceiver"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDWBaNUV06E53AWkYf9x8qjhCR1hHF_Dvk" />
     </application>
 
 </manifest>

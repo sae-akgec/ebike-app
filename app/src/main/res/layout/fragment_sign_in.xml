@@ -71,7 +71,7 @@
             android:id="@+id/auth_sign_in_button"
             android:layout_width="0dp"
             android:background="@color/colorPrimaryDark"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorWhite"
             android:layout_height="match_parent"
             android:text="SIGN IN"
             android:gravity="center"
