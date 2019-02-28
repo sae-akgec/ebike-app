@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.BikeActivity"></activity>
+        <activity android:name=".activity.RequestActivity"></activity>
+        <activity android:name=".activity.ShareActivity" />
+        <activity android:name=".activity.ConnectActivity" />
+        <activity android:name=".activity.BikeActivity" />
         <activity android:name=".activity.AuthActivity" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
