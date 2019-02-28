@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -12,6 +13,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -20,13 +22,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
@@ -35,15 +41,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
 import in.saeakgec.ebike.activity.ConnectActivity;
+import in.saeakgec.ebike.services.Constants;
 import in.saeakgec.ebike.services.Util;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, LocationListener {
+public class MapFragment extends Fragment implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     GoogleMap googlemap;
     private LatLng myLocation;
 
-    @BindView(R.id.tv_Address)
+    @BindView(R.id.connect_map_Address)
     TextView tv_Address;
+
+    @BindView(R.id.connect_map_shutdown)
+    Button button;
 
     private Address address;
     public static String strAddress = null, s_address;
@@ -103,106 +114,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
             googleMap.getUiSettings().setMyLocationButtonEnabled(true);
             Log.v("onActivityResult", " nullllllllll--" + myLocation);
+            CircleOptions circleOptions = new CircleOptions()
+                    .center( Constants.BAY_AREA_LANDMARKS.get("SFO") )
+                    .radius( Constants.GEOFENCE_RADIUS_IN_METERS )
+                    .fillColor(0x40ff0000)
+                    .strokeColor(Color.TRANSPARENT)
+                    .strokeWidth(2);
 
-            googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
-                @Override
-                public void onCameraIdle() {
-
-
-                    getAddressGEOCODE(googleMap.getCameraPosition().target);
-
-                }
-            });
+            googleMap.addCircle(circleOptions);
 
         }
 
 
-    }
-
-    public void getAddressGEOCODE(final LatLng currenLatLng) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                Geocoder gCoder = new Geocoder(getContext());
-                try {
-                    final List<Address> list = gCoder.getFromLocation(
-                            currenLatLng.latitude, currenLatLng.longitude, 1);
-                    if (list != null && list.size() > 0) {
-                        address = list.get(0);
-                        StringBuilder sb = new StringBuilder();
-                        if (address.getAddressLine(0) != null) {
-                            if (address.getMaxAddressLineIndex() > 0) {
-                                for (int i = 0; i < address
-                                        .getMaxAddressLineIndex(); i++) {
-                                    sb.append(address.getAddressLine(i))
-                                            .append("\n");
-                                }
-                                sb.append(",");
-                                sb.append(address.getCountryName());
-                            } else {
-                                sb.append(address.getAddressLine(0));
-                            }
-                        }
-
-                        strAddress = sb.toString();
-                        strAddress = strAddress.replace(",null", "");
-                        strAddress = strAddress.replace("null", "");
-                        strAddress = strAddress.replace("Unnamed", "");
-
-
-                    }
-                    Log.v("location_add", "strAddress:" + strAddress);
-
-                    if (list.size() < 1) {
-
-
-                    } else {
-
-
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (!TextUtils.isEmpty(strAddress)) {
-                                    tv_Address.setFocusable(false);
-                                    tv_Address.setFocusableInTouchMode(false);
-                                    tv_Address.setText(strAddress);
-
-                                    tv_Address.setText(strAddress);
-
-                                    myLocation = currenLatLng;
-
-                                    s_address = strAddress;
-
-
-                                    SharedPreferences pre = getActivity().getSharedPreferences(
-                                            "source_destination",
-                                            Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = pre
-                                            .edit();
-                                    editor.putString("event_address",
-                                            strAddress);
-                                    editor.putString("latitude_source",
-                                            String.valueOf(currenLatLng.latitude));
-                                    editor.putString("logtitude_source",
-                                            String.valueOf(currenLatLng.longitude));
-                                    editor.commit();
-
-                                } else {
-
-                                }
-
-                            }
-                        });
-
-                    }
-
-
-                } catch (Exception exc) {
-                    exc.printStackTrace();
-                }
-            }
-        }).start();
     }
 
     @Override
@@ -243,4 +166,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
     }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }
