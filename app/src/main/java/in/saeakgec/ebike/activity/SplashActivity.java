@@ -54,12 +54,12 @@ public class SplashActivity extends AppCompatActivity {
                     public void onSuccess(Response<Object> response) {
                         if (response.code() == 200) {
                             navigate(true);
+
                         }
                         else {
                             navigate(false);
                         }
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         showSnackBar();

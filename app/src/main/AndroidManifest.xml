@@ -10,13 +10,14 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher_background"
-        android:label="E BIKE"
+        android:label="SUPRA"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.RequestActivity"></activity>
         <activity android:name=".activity.ShareActivity" />
-        <activity android:name=".activity.ConnectActivity">
+        <activity android:name=".activity.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +26,7 @@
         </activity>
         <activity android:name=".activity.BikeActivity" />
         <activity android:name=".activity.AuthActivity" />
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.ConnectActivity">
 
         </activity>
         <activity android:name=".activity.MainActivity" />
