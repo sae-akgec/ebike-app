@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/auth_sign_in_layout"
+    android:background="#E0E0E0"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="90dp"
-        android:src="@drawable/ic_launcher_background"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:src="@drawable/info"
         android:scaleType="fitCenter"
         android:layout_marginTop="60dp"
         app:layout_constraintRight_toRightOf="parent"
@@ -55,7 +56,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
+        <Button
             android:id="@+id/auth_sign_in_back"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -67,7 +68,7 @@
             android:layout_weight="1"
             android:layout_margin="0dp"
             />
-        <TextView
+        <Button
             android:id="@+id/auth_sign_in_button"
             android:layout_width="0dp"
             android:background="@color/colorPrimaryDark"

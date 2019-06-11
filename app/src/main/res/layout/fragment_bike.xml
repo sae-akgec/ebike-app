@@ -13,13 +13,13 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/colorWhite">
+        android:background="#E0E0E0">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/bike_main_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@color/colorPrimaryDark"
+            android:src="@drawable/wheel"
             app:civ_border_color="@color/colorBackground"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +33,7 @@
             app:layout_constraintLeft_toRightOf="@+id/bike_main_avatar"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="30dp"
-            android:text="Custom bike 1"
+            android:text="BRAVADO SUPRA"
             android:textStyle="bold" />
     
         <TextView
