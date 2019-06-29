@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class BikeModel {
 
-    @SerializedName("id")
-    private long id;
+    @SerializedName("id")                       //json key
+    private long id;                             //java field
 
     @SerializedName("image")
     private String image;

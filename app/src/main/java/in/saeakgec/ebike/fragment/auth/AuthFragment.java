@@ -43,7 +43,12 @@ public class AuthFragment extends Fragment {
 
     @OnClick(R.id.auth_auth_phone)
     void signUp(){
-        authFragmentListener.signUp();
-    }
+        authFragmentListener.signUp(); }
+    @OnClick(R.id.auth_auth_google)
+    void google(){
+        authFragmentListener.google();}
+    @OnClick(R.id.auth_auth_facebook)
+    void facebook(){
+        authFragmentListener.facebook();
 
-}
+}}

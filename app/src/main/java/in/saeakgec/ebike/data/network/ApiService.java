@@ -2,6 +2,8 @@ package in.saeakgec.ebike.data.network;
 
 import in.saeakgec.ebike.data.models.DriverBikeModel;
 import in.saeakgec.ebike.data.models.DriverHistoryModel;
+import in.saeakgec.ebike.data.models.FacebookModel;
+import in.saeakgec.ebike.data.models.GoogleModel;
 import in.saeakgec.ebike.data.models.ListModel;
 import in.saeakgec.ebike.data.models.RegisterModel;
 import in.saeakgec.ebike.data.models.SignInModel;
@@ -22,6 +24,13 @@ public interface ApiService {
     @POST("/api/auth/register/")
     Single<Response<Object>> signUp(@Body RegisterModel registerModel);
 
+
+    @POST("/api/auth/google/")
+    Single<Response<TokenModel>> google(@Body GoogleModel googleModel);
+
+    @POST("/api/auth/facebook/")
+    Single<Response<TokenModel>> facebook(@Body FacebookModel facebookModel);
+
     @GET("/api/user/profile/")
     Single<Response<Object>> checkAuth();
 
@@ -30,5 +39,6 @@ public interface ApiService {
 
     @GET("/api/user/history")
     Single<Response<ListModel<DriverHistoryModel>>> getAllhistory();
+
 
 }

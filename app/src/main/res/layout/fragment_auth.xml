@@ -28,7 +28,7 @@
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
         android:paddingVertical="15dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="230dp"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
@@ -40,7 +40,31 @@
         android:background="#868686"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
-        android:paddingVertical="15dp"
+        android:layout_marginBottom="160dp"
         app:layout_constraintTop_toBottomOf="@+id/auth_auth_phone" />
+
+    <Button
+        android:id="@+id/auth_auth_google"
+        android:text="Login through Google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="#858585"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:layout_marginBottom="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/auth_auth_facebook"
+        android:text="Login through Facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="#858585"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
