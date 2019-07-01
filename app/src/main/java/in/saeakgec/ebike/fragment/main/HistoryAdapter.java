@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -27,7 +26,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
         public MyViewHolder(View view) {
             super(view);
-            numberTextView= (TextView) view.findViewById(R.id.main_history_item_name);
+            numberTextView = (TextView) view.findViewById(R.id.main_history_item_name);
             imageView = (SimpleDraweeView) view.findViewById(R.id.main_history_item_avatar);
             timeTextView = (TextView) view.findViewById(R.id.main_history_item_time);
         }

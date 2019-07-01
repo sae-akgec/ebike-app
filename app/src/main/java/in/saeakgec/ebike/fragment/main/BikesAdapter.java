@@ -53,7 +53,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
         holder.textView.setText(bike.getNumber());
         holder.imageView.setImageURI(uri);
 
-        if (bike.getAdmin() == driverBike.getUser()){
+        if (bike.getAdmin() == driverBike.getUser()) {
             holder.adminLayout.setVisibility(View.VISIBLE);
         } else {
             holder.adminLayout.setVisibility(View.GONE);

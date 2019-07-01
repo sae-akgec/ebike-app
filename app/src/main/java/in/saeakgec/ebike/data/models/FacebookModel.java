@@ -3,7 +3,7 @@ package in.saeakgec.ebike.data.models;
 import com.google.gson.annotations.SerializedName;
 
 public class FacebookModel {
-    @SerializedName("username_or_email")
+    @SerializedName("facebook_id")
     private String email;
 
     @SerializedName("password")

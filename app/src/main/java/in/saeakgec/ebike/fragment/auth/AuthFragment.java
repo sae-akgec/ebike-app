@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -19,9 +18,11 @@ import in.saeakgec.ebike.listener.AuthFragmentListener;
 public class AuthFragment extends Fragment {
 
     private AuthFragmentListener authFragmentListener;
+
     public AuthFragment() {
         // Required empty public constructor
     }
+
     public void setAuthFragmentListener(AuthFragmentListener authFragmentListener) {
         this.authFragmentListener = authFragmentListener;
     }
@@ -37,18 +38,13 @@ public class AuthFragment extends Fragment {
     }
 
     @OnClick(R.id.auth_auth_signin)
-    void signIn(){
+    void signIn() {
         authFragmentListener.signIn();
     }
 
     @OnClick(R.id.auth_auth_phone)
-    void signUp(){
-        authFragmentListener.signUp(); }
-    @OnClick(R.id.auth_auth_google)
-    void google(){
-        authFragmentListener.google();}
-    @OnClick(R.id.auth_auth_facebook)
-    void facebook(){
-        authFragmentListener.facebook();
+    void signUp() {
+        authFragmentListener.signUp();
+    }
 
-}}
+}

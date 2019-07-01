@@ -2,15 +2,13 @@ package in.saeakgec.ebike.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
@@ -45,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
         checkAuth();
     }
 
-    public void checkAuth(){
+    public void checkAuth() {
         apiService.checkAuth()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -55,11 +53,11 @@ public class SplashActivity extends AppCompatActivity {
                         if (response.code() == 200) {
                             navigate(true);
 
-                        }
-                        else {
+                        } else {
                             navigate(false);
                         }
                     }
+
                     @Override
                     public void onError(Throwable e) {
                         showSnackBar();
@@ -68,12 +66,12 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void navigate(boolean b) {
-    Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
-    Intent authIntent = new Intent(SplashActivity.this, AuthActivity.class);
-        if (b){
-           startActivity(mainIntent);
-           finish();
-        }else{
+        Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
+        Intent authIntent = new Intent(SplashActivity.this, AuthActivity.class);
+        if (b) {
+            startActivity(mainIntent);
+            finish();
+        } else {
             startActivity(authIntent);
             finish();
         }
@@ -81,7 +79,7 @@ public class SplashActivity extends AppCompatActivity {
 
     public void showSnackBar() {
         progress(false);
-        final Snackbar snackbar = Snackbar.make(constraintLayout , "No internet connection!", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(constraintLayout, "No internet connection!", Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,9 +96,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void progress(boolean b) {
-        if (b){
+        if (b) {
             progressBar.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             progressBar.setVisibility(View.INVISIBLE);
         }
     }

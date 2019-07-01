@@ -30,7 +30,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Response;
 
 
-public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.main_history_swipe_container)
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -58,7 +58,7 @@ public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRe
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        driverHistory =  new ArrayList<>();
+        driverHistory = new ArrayList<>();
 
         historyAdapter = new HistoryAdapter(driverHistory);
         recyclerView.setAdapter(historyAdapter);
@@ -76,7 +76,7 @@ public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRe
             @Override
             public void run() {
 
-                if(mSwipeRefreshLayout != null) {
+                if (mSwipeRefreshLayout != null) {
                     mSwipeRefreshLayout.setRefreshing(true);
                 }
                 getHistory();
@@ -92,7 +92,7 @@ public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
     @SuppressLint("CheckResult")
-    public void getHistory(){
+    public void getHistory() {
         mSwipeRefreshLayout.setRefreshing(true);
         apiService.getAllhistory()
                 .subscribeOn(Schedulers.io())
@@ -105,8 +105,7 @@ public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             historyAdapter.setDriverHistory(driverHistory);
                             historyAdapter.notifyDataSetChanged();
                             mSwipeRefreshLayout.setRefreshing(false);
-                        }
-                        else {
+                        } else {
                             showSnackBar("Unable to get data");
                             mSwipeRefreshLayout.setRefreshing(false);
                         }
@@ -121,7 +120,7 @@ public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
     public void showSnackBar(String msg) {
-        final Snackbar snackbar = Snackbar.make(mSwipeRefreshLayout , msg, Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(mSwipeRefreshLayout, msg, Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("CLOSE", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,5 +133,5 @@ public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRe
         textView.setTextColor(Color.YELLOW);
         snackbar.show();
     }
-    
+
 }

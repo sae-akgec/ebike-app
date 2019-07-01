@@ -1,7 +1,6 @@
 package in.saeakgec.ebike.data.network;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

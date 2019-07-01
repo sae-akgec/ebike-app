@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,6 @@ import in.saeakgec.ebike.data.models.DriverBikeModel;
 import in.saeakgec.ebike.data.models.ListModel;
 import in.saeakgec.ebike.data.network.ApiClient;
 import in.saeakgec.ebike.data.network.ApiService;
-import in.saeakgec.ebike.data.utils.PrefUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -34,7 +32,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.main_bikes_swipe_container)
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -63,7 +61,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        driverBikes =  new ArrayList<>();
+        driverBikes = new ArrayList<>();
 
         bikesAdapter = new BikesAdapter(driverBikes);
         recyclerView.setAdapter(bikesAdapter);
@@ -81,7 +79,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             @Override
             public void run() {
 
-                if(mSwipeRefreshLayout != null) {
+                if (mSwipeRefreshLayout != null) {
                     mSwipeRefreshLayout.setRefreshing(true);
                 }
                 getBikes();
@@ -97,7 +95,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     @SuppressLint("CheckResult")
-    public void getBikes(){
+    public void getBikes() {
         mSwipeRefreshLayout.setRefreshing(true);
         apiService.getAllbikes()
                 .subscribeOn(Schedulers.io())
@@ -110,8 +108,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             bikesAdapter.setDriverBikes(driverBikes);
                             bikesAdapter.notifyDataSetChanged();
                             mSwipeRefreshLayout.setRefreshing(false);
-                        }
-                        else {
+                        } else {
                             showSnackBar("Unable to get data");
                             mSwipeRefreshLayout.setRefreshing(false);
                         }
@@ -126,7 +123,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     public void showSnackBar(String msg) {
-        final Snackbar snackbar = Snackbar.make(mSwipeRefreshLayout , msg, Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(mSwipeRefreshLayout, msg, Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("CLOSE", new View.OnClickListener() {
             @Override
             public void onClick(View view) {

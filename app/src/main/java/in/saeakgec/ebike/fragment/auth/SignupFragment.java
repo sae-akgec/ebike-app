@@ -18,11 +18,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import in.saeakgec.ebike.R;
 import in.saeakgec.ebike.data.models.RegisterModel;
-import in.saeakgec.ebike.data.models.SignInModel;
-import in.saeakgec.ebike.data.models.TokenModel;
 import in.saeakgec.ebike.data.network.ApiClient;
 import in.saeakgec.ebike.data.network.ApiService;
-import in.saeakgec.ebike.data.utils.PrefUtils;
 import in.saeakgec.ebike.listener.SignupFragmentListener;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
@@ -66,7 +63,7 @@ public class SignupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View  view = inflater.inflate(R.layout.fragment_signup, container, false);
+        View view = inflater.inflate(R.layout.fragment_signup, container, false);
         ButterKnife.bind(this, view);
         registerModel = new RegisterModel();
         apiService = ApiClient.getClient(getContext()).create(ApiService.class);
@@ -78,7 +75,7 @@ public class SignupFragment extends Fragment {
     }
 
     @OnClick(R.id.auth_sign_in_button)
-    void  signUp(){
+    void signUp() {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         String confirmPassword = confirmPasswordEditText.getText().toString();
@@ -91,16 +88,15 @@ public class SignupFragment extends Fragment {
         registerModel.setLastName(lastName);
         registerModel.setFirstName(firstName);
 
-        if(email.equals("") || password.equals("") || firstName.equals("") || confirmPassword.equals(""))
-        {
+        if (email.equals("") || password.equals("") || firstName.equals("") || confirmPassword.equals("")) {
             showSnackBar("Please fill information Correctly");
-        }else{
+        } else {
             register();
         }
     }
 
     @SuppressLint("CheckResult")
-    public void register(){
+    public void register() {
         apiService.signUp(registerModel)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -109,8 +105,7 @@ public class SignupFragment extends Fragment {
                     public void onSuccess(Response<Object> response) {
                         if (response.code() == 200) {
                             showSnackBar("Successfully Registered! Please confirm your email");
-                        }
-                        else {
+                        } else {
                             showSnackBar("Unable Register! Please fill your information correctly");
                         }
                     }
@@ -130,7 +125,7 @@ public class SignupFragment extends Fragment {
     }
 
     public void showSnackBar(String msg) {
-        final Snackbar snackbar = Snackbar.make(constraintLayout , msg, Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(constraintLayout, msg, Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("CLOSE", new View.OnClickListener() {
             @Override
             public void onClick(View view) {

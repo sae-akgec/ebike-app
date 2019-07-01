@@ -1,28 +1,21 @@
 package in.saeakgec.ebike.fragment.auth;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.activity.AuthActivity;
-import in.saeakgec.ebike.activity.MainActivity;
 import in.saeakgec.ebike.data.models.SignInModel;
 import in.saeakgec.ebike.data.models.TokenModel;
 import in.saeakgec.ebike.data.network.ApiClient;
@@ -51,7 +44,7 @@ public class SignInFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_sign_in, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
         ButterKnife.bind(this, view);
         signInModel = new SignInModel();
         apiService = ApiClient.getClient(getContext()).create(ApiService.class);
@@ -59,15 +52,14 @@ public class SignInFragment extends Fragment {
     }
 
     @OnClick(R.id.auth_sign_in_button)
-    void  signIn(){
+    void signIn() {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         signInModel.setEmail(email);
         signInModel.setPassword(password);
-        if(email.equals("") || password.equals(""))
-        {
+        if (email.equals("") || password.equals("")) {
             showSnackBar("Please fill information Correctly");
-        }else {
+        } else {
             checkAuth();
         }
     }
@@ -86,27 +78,26 @@ public class SignInFragment extends Fragment {
 //    }
 
     @SuppressLint("CheckResult")
-    public void checkAuth(){
+    public void checkAuth() {
         apiService.signIn(signInModel)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(new DisposableSingleObserver<Response<TokenModel>>() {
-                @Override
-                public void onSuccess(Response<TokenModel> response) {
-                    if (response.code() == 200) {
-                        PrefUtils.storeToken(getContext(), response.body().getToken());
-                        signInFragmentListener.mainActivity();
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<Response<TokenModel>>() {
+                    @Override
+                    public void onSuccess(Response<TokenModel> response) {
+                        if (response.code() == 200) {
+                            PrefUtils.storeToken(getContext(), response.body().getToken());
+                            signInFragmentListener.mainActivity();
+                        } else {
+                            showSnackBar("Unable to log in with provided credentials");
+                        }
                     }
-                    else {
-                        showSnackBar("Unable to log in with provided credentials");
-                    }
-                }
 
-                @Override
-                public void onError(Throwable e) {
-                    showSnackBar("No internet connection!");
-                }
-            });
+                    @Override
+                    public void onError(Throwable e) {
+                        showSnackBar("No internet connection!");
+                    }
+                });
 
     }
 
@@ -115,7 +106,7 @@ public class SignInFragment extends Fragment {
     }
 
     public void showSnackBar(String msg) {
-        final Snackbar snackbar = Snackbar.make(constraintLayout , msg, Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(constraintLayout, msg, Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("CLOSE", new View.OnClickListener() {
             @Override
             public void onClick(View view) {

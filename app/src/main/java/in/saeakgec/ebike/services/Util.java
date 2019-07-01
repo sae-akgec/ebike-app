@@ -8,7 +8,7 @@ import android.support.v4.app.ActivityCompat;
 
 public class Util {
 
-    public static  void requestPermission(Activity context, int permissionCode) {
+    public static void requestPermission(Activity context, int permissionCode) {
         ActivityCompat.requestPermissions(context,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 permissionCode);

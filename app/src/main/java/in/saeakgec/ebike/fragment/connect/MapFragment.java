@@ -2,22 +2,18 @@ package in.saeakgec.ebike.fragment.connect;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,12 +31,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.activity.ConnectActivity;
 import in.saeakgec.ebike.services.Constants;
 import in.saeakgec.ebike.services.Util;
 
@@ -85,7 +78,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     }
 
     private void initMap() {
-        SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
 
@@ -115,8 +108,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             googleMap.getUiSettings().setMyLocationButtonEnabled(true);
             Log.v("onActivityResult", " nullllllllll--" + myLocation);
             CircleOptions circleOptions = new CircleOptions()
-                    .center( Constants.BAY_AREA_LANDMARKS.get("SFO") )
-                    .radius( Constants.GEOFENCE_RADIUS_IN_METERS )
+                    .center(Constants.BAY_AREA_LANDMARKS.get("SFO"))
+                    .radius(Constants.GEOFENCE_RADIUS_IN_METERS)
                     .fillColor(0x40ff0000)
                     .strokeColor(Color.TRANSPARENT)
                     .strokeWidth(2);
