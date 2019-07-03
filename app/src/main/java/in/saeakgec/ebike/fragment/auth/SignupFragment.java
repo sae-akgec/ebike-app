@@ -74,7 +74,7 @@ public class SignupFragment extends Fragment {
         this.signupFragmentListener = signupFragmentListener;
     }
 
-    @OnClick(R.id.auth_sign_in_button)
+    @OnClick(R.id.auth_signup_button)
     void signUp() {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
@@ -103,8 +103,8 @@ public class SignupFragment extends Fragment {
                 .subscribeWith(new DisposableSingleObserver<Response<Object>>() {
                     @Override
                     public void onSuccess(Response<Object> response) {
-                        if (response.code() == 200) {
-                            showSnackBar("Successfully Registered! Please confirm your email");
+                        if (response.code() == 201) {
+                            showSnackBar("Successfully Registered! Please login");
                         } else {
                             showSnackBar("Unable Register! Please fill your information correctly");
                         }
@@ -119,7 +119,7 @@ public class SignupFragment extends Fragment {
     }
 
 
-    @OnClick(R.id.auth_sign_in_back)
+    @OnClick(R.id.auth_signup_back)
     void onBackPressed() {
         signupFragmentListener.backSignup();
     }

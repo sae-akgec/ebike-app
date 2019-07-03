@@ -22,14 +22,7 @@ public interface ApiService {
     @POST("/api/auth/register/")
     Single<Response<Object>> signUp(@Body RegisterModel registerModel);
 
-
-    @POST("/api/auth/google/")
-    Single<Response<TokenModel>> google(@Body GoogleModel googleModel);
-
-    @POST("/api/auth/facebook/")
-    Single<Response<TokenModel>> facebook(@Body FacebookModel facebookModel);
-
-    @GET("/api/user/profile/")
+    @GET("/api/user/me/")
     Single<Response<Object>> checkAuth();
 
     @GET("/api/user/bikes")

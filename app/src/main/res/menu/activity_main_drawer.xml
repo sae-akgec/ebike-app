@@ -30,4 +30,8 @@
                 android:title="Item 7" />
         </menu>
     </item>
+
+        <item android:id="@+id/logout"
+            android:title="Logout" />
+
 </menu>
