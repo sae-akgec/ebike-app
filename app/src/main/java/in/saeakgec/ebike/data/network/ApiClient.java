@@ -21,7 +21,7 @@ public class ApiClient {
     private static OkHttpClient okHttpClient;
 
     public static Retrofit getClient(Context context) {
-        String BASE_URL = "http://192.168.43.52:3000/";
+        String BASE_URL = "https://bravado19.herokuapp.com/";
 
         if (okHttpClient == null)
             initOkHttp(context);

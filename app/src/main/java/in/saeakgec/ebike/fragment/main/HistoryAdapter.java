@@ -13,7 +13,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.data.models.BikeModel;
+import in.saeakgec.ebike.data.models.CarModel;
 import in.saeakgec.ebike.data.models.DriverHistoryModel;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
@@ -46,7 +46,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         DriverHistoryModel driverBike = driverHistory.get(i);
-        BikeModel bike = driverBike.getBike();
+        CarModel bike = driverBike.getBike();
         Uri uri = Uri.parse(bike.getImage());
         holder.numberTextView.setText(bike.getNumber());
         holder.imageView.setImageURI(uri);

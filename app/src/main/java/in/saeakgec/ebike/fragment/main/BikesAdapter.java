@@ -14,12 +14,12 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.data.models.BikeModel;
-import in.saeakgec.ebike.data.models.DriverBikeModel;
+import in.saeakgec.ebike.data.models.CarModel;
+import in.saeakgec.ebike.data.models.DriverCarModel;
 
 public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder> {
 
-    private ArrayList<DriverBikeModel> driverBikes;
+    private ArrayList<DriverCarModel> driverBikes;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private SimpleDraweeView imageView;
@@ -34,7 +34,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
         }
     }
 
-    public BikesAdapter(ArrayList<DriverBikeModel> driverBikes) {
+    public BikesAdapter(ArrayList<DriverCarModel> driverBikes) {
         this.driverBikes = driverBikes;
     }
 
@@ -47,13 +47,13 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
-        DriverBikeModel driverBike = driverBikes.get(i);
-        BikeModel bike = driverBike.getBike();
-        Uri uri = Uri.parse(bike.getImage());
-        holder.textView.setText(bike.getNumber());
+        DriverCarModel driverBike = driverBikes.get(i);
+        CarModel car = driverBike.getCar();
+        Uri uri = Uri.parse(car.getImage());
+        holder.textView.setText(car.getNumber());
         holder.imageView.setImageURI(uri);
 
-        if (bike.getAdmin() == driverBike.getUser()) {
+        if (car.getAdmin() == driverBike.getUser()) {
             holder.adminLayout.setVisibility(View.VISIBLE);
         } else {
             holder.adminLayout.setVisibility(View.GONE);
@@ -66,7 +66,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
         return driverBikes.size();
     }
 
-    public void setDriverBikes(ArrayList<DriverBikeModel> driverBikes) {
+    public void setDriverBikes(ArrayList<DriverCarModel> driverBikes) {
         this.driverBikes = driverBikes;
     }
 }

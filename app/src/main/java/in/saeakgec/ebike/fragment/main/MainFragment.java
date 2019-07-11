@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.data.models.DriverBikeModel;
+import in.saeakgec.ebike.data.models.DriverCarModel;
 import in.saeakgec.ebike.data.models.ListModel;
 import in.saeakgec.ebike.data.network.ApiClient;
 import in.saeakgec.ebike.data.network.ApiService;
@@ -42,7 +42,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     private BikesAdapter bikesAdapter;
 
-    private ArrayList<DriverBikeModel> driverBikes;
+    private ArrayList<DriverCarModel> driverBikes;
 
     private ApiService apiService;
 
@@ -97,12 +97,12 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @SuppressLint("CheckResult")
     public void getBikes() {
         mSwipeRefreshLayout.setRefreshing(true);
-        apiService.getAllbikes()
+        apiService.getAllcars()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<Response<ListModel<DriverBikeModel>>>() {
+                .subscribeWith(new DisposableSingleObserver<Response<ListModel<DriverCarModel>>>() {
                     @Override
-                    public void onSuccess(Response<ListModel<DriverBikeModel>> response) {
+                    public void onSuccess(Response<ListModel<DriverCarModel>> response) {
                         if (response.code() == 200) {
                             driverBikes = response.body().getResults();
                             bikesAdapter.setDriverBikes(driverBikes);

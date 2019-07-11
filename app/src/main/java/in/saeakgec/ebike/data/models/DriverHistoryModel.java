@@ -18,11 +18,8 @@ public class DriverHistoryModel {
     @SerializedName("end_time")
     private String endTime;
 
-    @SerializedName("helmet")
-    private boolean helmet;
-
     @SerializedName("bike")
-    private BikeModel bike;
+    private CarModel car;
 
     public DriverHistoryModel() {
     }
@@ -67,19 +64,11 @@ public class DriverHistoryModel {
         this.endTime = endTime;
     }
 
-    public boolean isHelmet() {
-        return helmet;
+    public CarModel getBike() {
+        return car;
     }
 
-    public void setHelmet(boolean helmet) {
-        this.helmet = helmet;
-    }
-
-    public BikeModel getBike() {
-        return bike;
-    }
-
-    public void setBike(BikeModel bike) {
-        this.bike = bike;
+    public void setBike(CarModel car) {
+        this.car = car;
     }
 }
