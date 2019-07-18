@@ -10,15 +10,14 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.data.models.BikeModel;
 import in.saeakgec.ebike.data.models.DriverHistoryModel;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
 
-    private ArrayList<DriverHistoryModel> driverHistory;
+    private List<DriverHistoryModel> driverHistory;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private SimpleDraweeView imageView;
@@ -32,7 +31,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
         }
     }
 
-    public HistoryAdapter(ArrayList<DriverHistoryModel> driverHistory) {
+    public HistoryAdapter(List<DriverHistoryModel> driverHistory) {
         this.driverHistory = driverHistory;
     }
 
@@ -46,9 +45,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         DriverHistoryModel driverBike = driverHistory.get(i);
-        BikeModel bike = driverBike.getBike();
-        Uri uri = Uri.parse(bike.getImage());
-        holder.numberTextView.setText(bike.getNumber());
+        Uri uri = Uri.parse("https://i.imgur.com/8HSge50.png");
+        holder.numberTextView.setText("bravado19");
         holder.imageView.setImageURI(uri);
 
 
@@ -59,7 +57,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
         return driverHistory.size();
     }
 
-    public void setDriverHistory(ArrayList<DriverHistoryModel> driverHistory) {
+    public void setDriverHistory(List<DriverHistoryModel> driverHistory) {
         this.driverHistory = driverHistory;
     }
 }

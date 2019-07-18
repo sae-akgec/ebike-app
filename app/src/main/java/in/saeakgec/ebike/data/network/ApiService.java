@@ -1,11 +1,11 @@
 package in.saeakgec.ebike.data.network;
 
-import in.saeakgec.ebike.data.models.DriverBikeModel;
+import java.util.List;
+
+import in.saeakgec.ebike.data.models.CarModel;
 import in.saeakgec.ebike.data.models.DriverHistoryModel;
-import in.saeakgec.ebike.data.models.FacebookModel;
-import in.saeakgec.ebike.data.models.GoogleModel;
-import in.saeakgec.ebike.data.models.ListModel;
 import in.saeakgec.ebike.data.models.RegisterModel;
+import in.saeakgec.ebike.data.models.ShareCarModel;
 import in.saeakgec.ebike.data.models.SignInModel;
 import in.saeakgec.ebike.data.models.TokenModel;
 import io.reactivex.Single;
@@ -13,6 +13,7 @@ import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiService {
 
@@ -22,21 +23,21 @@ public interface ApiService {
     @POST("/api/auth/register/")
     Single<Response<Object>> signUp(@Body RegisterModel registerModel);
 
-
-    @POST("/api/auth/google/")
-    Single<Response<TokenModel>> google(@Body GoogleModel googleModel);
-
-    @POST("/api/auth/facebook/")
-    Single<Response<TokenModel>> facebook(@Body FacebookModel facebookModel);
-
-    @GET("/api/user/profile/")
+    @GET("/api/users/me/")
     Single<Response<Object>> checkAuth();
 
-    @GET("/api/user/bikes")
-    Single<Response<ListModel<DriverBikeModel>>> getAllbikes();
+    @GET("/api/users/cars")
+    Single<Response<List<CarModel>>> getAllcars();
 
-    @GET("/api/user/history")
-    Single<Response<ListModel<DriverHistoryModel>>> getAllhistory();
+    @GET("/api/users/history")
+    Single<Response<List<DriverHistoryModel>>> getAllhistory();
 
+    @GET("/api/users/on/{id}")
+    Single<Response<Object>> turnOn(@Path("id") String id);
 
+    @GET("/api/users/off/{id}")
+    Single<Response<Object>> turnOff(@Path("id") String id);
+
+    @POST("/api/cars/share/")
+    Single<Response<Object>> share(@Body ShareCarModel shareCarModel);
 }

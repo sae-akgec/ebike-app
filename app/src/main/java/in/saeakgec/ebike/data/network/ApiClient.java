@@ -21,7 +21,7 @@ public class ApiClient {
     private static OkHttpClient okHttpClient;
 
     public static Retrofit getClient(Context context) {
-        String BASE_URL = "http://192.168.0.107:8000/";
+        String BASE_URL = "https://bravado19.herokuapp.com/";
 
         if (okHttpClient == null)
             initOkHttp(context);
@@ -39,7 +39,7 @@ public class ApiClient {
 
     private static void initOkHttp(final Context context) {                                       //.retryOnConnectionFailure
         OkHttpClient.Builder httpClient = new OkHttpClient().newBuilder()
-                .connectTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)
+                .connectTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)                                //REQUEST TIME OUT
                 .readTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS);
 

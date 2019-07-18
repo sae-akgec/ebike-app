@@ -2,6 +2,7 @@ package in.saeakgec.ebike.fragment.main;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -14,16 +15,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.data.models.DriverBikeModel;
-import in.saeakgec.ebike.data.models.ListModel;
+import in.saeakgec.ebike.activity.ShareActivity;
+import in.saeakgec.ebike.data.models.CarModel;
 import in.saeakgec.ebike.data.network.ApiClient;
 import in.saeakgec.ebike.data.network.ApiService;
+import in.saeakgec.ebike.listener.BikesAdapterListener;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -32,7 +36,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, BikesAdapterListener {
 
     @BindView(R.id.main_bikes_swipe_container)
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -42,7 +46,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     private BikesAdapter bikesAdapter;
 
-    private ArrayList<DriverBikeModel> driverBikes;
+    private List<CarModel> driverBikes;
 
     private ApiService apiService;
 
@@ -63,7 +67,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         driverBikes = new ArrayList<>();
 
-        bikesAdapter = new BikesAdapter(driverBikes);
+        bikesAdapter = new BikesAdapter(driverBikes, this);
         recyclerView.setAdapter(bikesAdapter);
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -97,14 +101,14 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @SuppressLint("CheckResult")
     public void getBikes() {
         mSwipeRefreshLayout.setRefreshing(true);
-        apiService.getAllbikes()
+        apiService.getAllcars()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<Response<ListModel<DriverBikeModel>>>() {
+                .subscribeWith(new DisposableSingleObserver<Response<List<CarModel>>>() {
                     @Override
-                    public void onSuccess(Response<ListModel<DriverBikeModel>> response) {
+                    public void onSuccess(Response<List<CarModel>> response) {
                         if (response.code() == 200) {
-                            driverBikes = response.body().getResults();
+                            driverBikes = response.body();
                             bikesAdapter.setDriverBikes(driverBikes);
                             bikesAdapter.notifyDataSetChanged();
                             mSwipeRefreshLayout.setRefreshing(false);
@@ -138,4 +142,67 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
 
+    @Override
+    public void shareActivity(String id) {
+        Intent intent = new Intent(getActivity(), ShareActivity.class);
+        intent.putExtra("carId", id);
+        startActivity(intent);
+    }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void turnOn(String id) {
+        Toast.makeText(getActivity(), "Turning On", Toast.LENGTH_SHORT).show();
+        this.apiService.turnOn(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<Response<Object>>() {
+                    @Override
+                    public void onSuccess(Response<Object> response) {
+                        if (response.code() == 200) {
+                            showSnackBar("Car turned on");
+                            getBikes();
+                        } else {
+                            showSnackBar("Unable to turn on car");
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        showSnackBar("No internet connection!");
+                    }
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void turnOff(String id) {
+        Toast.makeText(getActivity(), "Turning Off", Toast.LENGTH_SHORT).show();
+        this.apiService.turnOff(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<Response<Object>>() {
+                    @Override
+                    public void onSuccess(Response<Object> response) {
+                        if (response.code() == 200) {
+                            showSnackBar("Car turned off");
+                            getBikes();
+                        } else {
+                            showSnackBar("Unable to turn off car");
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        showSnackBar("No internet connection!");
+                    }
+                });
+    }
+
+    @Override
+    public void settingActvity() {
+
+    }
 }

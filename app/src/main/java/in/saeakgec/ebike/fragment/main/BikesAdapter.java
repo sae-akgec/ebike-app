@@ -11,31 +11,35 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.data.models.BikeModel;
-import in.saeakgec.ebike.data.models.DriverBikeModel;
+import in.saeakgec.ebike.data.models.CarModel;
+import in.saeakgec.ebike.listener.BikesAdapterListener;
 
 public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder> {
 
-    private ArrayList<DriverBikeModel> driverBikes;
+    private List<CarModel> driverBikes;
+    private BikesAdapterListener listener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private SimpleDraweeView imageView;
-        private TextView textView;
+        private TextView textView, connectView, shareView;
         private LinearLayout adminLayout;
 
         public MyViewHolder(View view) {
             super(view);
             textView = (TextView) view.findViewById(R.id.main_bikes_item_number);
             imageView = (SimpleDraweeView) view.findViewById(R.id.main_bikes_item_avatar);
+            connectView = (TextView) view.findViewById(R.id.main_bikes_item_connect);
             adminLayout = (LinearLayout) view.findViewById(R.id.main_bikes_item_adminLayout);
+            shareView = (TextView) view.findViewById(R.id.main_bikes_item_share);
         }
     }
 
-    public BikesAdapter(ArrayList<DriverBikeModel> driverBikes) {
+    public BikesAdapter(List<CarModel> driverBikes, BikesAdapterListener listener) {
         this.driverBikes = driverBikes;
+        this.listener = listener;
     }
 
     @NonNull
@@ -47,17 +51,25 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
-        DriverBikeModel driverBike = driverBikes.get(i);
-        BikeModel bike = driverBike.getBike();
-        Uri uri = Uri.parse(bike.getImage());
-        holder.textView.setText(bike.getNumber());
+        CarModel car = driverBikes.get(i);
+        Uri uri = Uri.parse(car.getImage());
+        holder.textView.setText(car.getCarNumber());
         holder.imageView.setImageURI(uri);
-
-        if (bike.getAdmin() == driverBike.getUser()) {
-            holder.adminLayout.setVisibility(View.VISIBLE);
+        if(car.getCarStatus().isStatus()){
+            holder.connectView.setText("Turn Off");
         } else {
-            holder.adminLayout.setVisibility(View.GONE);
+            holder.connectView.setText("Turn On");
         }
+        holder.connectView.setOnClickListener(v -> {
+            if(car.getCarStatus().isStatus())
+                listener.turnOff(car.getId());
+            else
+                listener.turnOn(car.getId());
+        });
+
+        holder.shareView.setOnClickListener(v ->{
+            listener.shareActivity(car.getId());
+        });
 
     }
 
@@ -66,7 +78,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
         return driverBikes.size();
     }
 
-    public void setDriverBikes(ArrayList<DriverBikeModel> driverBikes) {
+    public void setDriverBikes(List<CarModel> driverBikes) {
         this.driverBikes = driverBikes;
     }
 }

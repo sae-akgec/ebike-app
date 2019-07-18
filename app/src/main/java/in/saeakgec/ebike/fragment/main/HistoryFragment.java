@@ -16,12 +16,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
 import in.saeakgec.ebike.data.models.DriverHistoryModel;
-import in.saeakgec.ebike.data.models.ListModel;
 import in.saeakgec.ebike.data.network.ApiClient;
 import in.saeakgec.ebike.data.network.ApiService;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -40,7 +40,7 @@ public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     private HistoryAdapter historyAdapter;
 
-    private ArrayList<DriverHistoryModel> driverHistory;
+    private List<DriverHistoryModel> driverHistory;
 
     private ApiService apiService;
 
@@ -97,11 +97,11 @@ public class HistoryFragment extends Fragment implements SwipeRefreshLayout.OnRe
         apiService.getAllhistory()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<Response<ListModel<DriverHistoryModel>>>() {
+                .subscribeWith(new DisposableSingleObserver<Response<List<DriverHistoryModel>>>() {
                     @Override
-                    public void onSuccess(Response<ListModel<DriverHistoryModel>> response) {
+                    public void onSuccess(Response<List<DriverHistoryModel>> response) {
                         if (response.code() == 200) {
-                            driverHistory = response.body().getResults();
+                            driverHistory = response.body();
                             historyAdapter.setDriverHistory(driverHistory);
                             historyAdapter.notifyDataSetChanged();
                             mSwipeRefreshLayout.setRefreshing(false);

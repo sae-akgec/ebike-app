@@ -1,6 +1,7 @@
 package in.saeakgec.ebike.fragment.auth;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -25,7 +26,9 @@ import in.saeakgec.ebike.listener.SignInFragmentListener;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
 import retrofit2.Response;
+
 
 public class SignInFragment extends Fragment {
     private SignInFragmentListener signInFragmentListener;
@@ -40,6 +43,7 @@ public class SignInFragment extends Fragment {
 
     @BindView(R.id.auth_sign_in_layout)
     ConstraintLayout constraintLayout;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -9,12 +9,12 @@
 
     <ImageView
         android:id="@+id/auth_auth_logo"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/icon3"
         />
 
@@ -24,11 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:background="#858585"
-        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
         android:textSize="18sp"
         android:paddingVertical="15dp"
-        android:layout_marginBottom="230dp"
+        app:layout_constraintTop_toBottomOf="@+id/auth_auth_logo"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
@@ -37,34 +37,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="#868686"
-        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:paddingVertical="15dp"
         android:textSize="18sp"
-        android:layout_marginBottom="160dp"
         app:layout_constraintTop_toBottomOf="@+id/auth_auth_phone" />
 
-    <Button
-        android:id="@+id/auth_auth_google"
-        android:text="Login through Google"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:background="#858585"
-        android:textColor="@color/colorAccent"
-        android:textSize="18sp"
-        android:layout_marginBottom="90dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <Button
-        android:id="@+id/auth_auth_facebook"
-        android:text="Login through Facebook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:background="#858585"
-        android:textColor="@color/colorAccent"
-        android:textSize="18sp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
