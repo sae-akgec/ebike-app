@@ -5,6 +5,7 @@ import java.util.List;
 import in.saeakgec.ebike.data.models.CarModel;
 import in.saeakgec.ebike.data.models.DriverHistoryModel;
 import in.saeakgec.ebike.data.models.RegisterModel;
+import in.saeakgec.ebike.data.models.ShareCarModel;
 import in.saeakgec.ebike.data.models.SignInModel;
 import in.saeakgec.ebike.data.models.TokenModel;
 import io.reactivex.Single;
@@ -36,4 +37,7 @@ public interface ApiService {
 
     @GET("/api/users/off/{id}")
     Single<Response<Object>> turnOff(@Path("id") String id);
+
+    @POST("/api/cars/share/")
+    Single<Response<Object>> share(@Body ShareCarModel shareCarModel);
 }

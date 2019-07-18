@@ -24,7 +24,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private SimpleDraweeView imageView;
-        private TextView textView, connectView;
+        private TextView textView, connectView, shareView;
         private LinearLayout adminLayout;
 
         public MyViewHolder(View view) {
@@ -33,6 +33,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
             imageView = (SimpleDraweeView) view.findViewById(R.id.main_bikes_item_avatar);
             connectView = (TextView) view.findViewById(R.id.main_bikes_item_connect);
             adminLayout = (LinearLayout) view.findViewById(R.id.main_bikes_item_adminLayout);
+            shareView = (TextView) view.findViewById(R.id.main_bikes_item_share);
         }
     }
 
@@ -59,14 +60,15 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
         } else {
             holder.connectView.setText("Turn On");
         }
-        holder.connectView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(car.getCarStatus().isStatus())
-                    listener.turnOff(car.getId());
-                else
-                    listener.turnOn(car.getId());
-            }
+        holder.connectView.setOnClickListener(v -> {
+            if(car.getCarStatus().isStatus())
+                listener.turnOff(car.getId());
+            else
+                listener.turnOn(car.getId());
+        });
+
+        holder.shareView.setOnClickListener(v ->{
+            listener.shareActivity(car.getId());
         });
 
     }

@@ -2,6 +2,7 @@ package in.saeakgec.ebike.fragment.main;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
+import in.saeakgec.ebike.activity.ShareActivity;
 import in.saeakgec.ebike.data.models.CarModel;
 import in.saeakgec.ebike.data.network.ApiClient;
 import in.saeakgec.ebike.data.network.ApiService;
@@ -140,12 +143,16 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
     @Override
-    public void shareActivity() {
-
+    public void shareActivity(String id) {
+        Intent intent = new Intent(getActivity(), ShareActivity.class);
+        intent.putExtra("carId", id);
+        startActivity(intent);
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void turnOn(String id) {
+        Toast.makeText(getActivity(), "Turning On", Toast.LENGTH_SHORT).show();
         this.apiService.turnOn(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -168,9 +175,11 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 });
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void turnOff(String id) {
-        this.apiService.turnOn(id)
+        Toast.makeText(getActivity(), "Turning Off", Toast.LENGTH_SHORT).show();
+        this.apiService.turnOff(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<Response<Object>>() {
