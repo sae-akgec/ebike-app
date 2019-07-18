@@ -23,6 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
+import in.saeakgec.ebike.activity.ConnectActivity;
 import in.saeakgec.ebike.activity.ShareActivity;
 import in.saeakgec.ebike.data.models.CarModel;
 import in.saeakgec.ebike.data.network.ApiClient;
@@ -204,5 +205,13 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public void settingActvity() {
 
+
+    }
+
+    @Override
+    public void geoFencing(String id) {
+        Intent intent = new Intent(getActivity(), ConnectActivity.class);
+        intent.putExtra("carId", id);
+        startActivity(intent);
     }
 }

@@ -5,4 +5,5 @@ public interface BikesAdapterListener {
     void turnOn(String id);
     void turnOff(String id);
     void settingActvity();
+    void geoFencing(String id);
 }

@@ -4,10 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class DriverHistoryModel {
     @SerializedName("_id")
-    private long id;
+    private String id;
 
     @SerializedName("driver_name")
     private String driverName;
+
+    @SerializedName("driver_id")
+    private String driverId;
 
     @SerializedName("car_id")
     private String carId;
@@ -34,12 +37,20 @@ public class DriverHistoryModel {
     public DriverHistoryModel() {
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
     }
 
     public String getDriverName() {

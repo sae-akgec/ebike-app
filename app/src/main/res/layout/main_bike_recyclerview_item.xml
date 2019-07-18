@@ -67,7 +67,7 @@
                 android:background="@color/colorPrimaryDark"
                 android:layout_marginEnd="2dp"
                 android:textColor="@color/colorWhite"
-                android:text="History"
+                android:text="Geo Fencing"
                 android:gravity="center"
                 android:padding="8dp"
                 android:textSize="14sp"

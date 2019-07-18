@@ -24,7 +24,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private SimpleDraweeView imageView;
-        private TextView textView, connectView, shareView;
+        private TextView textView, connectView, shareView, gfView;
         private LinearLayout adminLayout;
 
         public MyViewHolder(View view) {
@@ -34,6 +34,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
             connectView = (TextView) view.findViewById(R.id.main_bikes_item_connect);
             adminLayout = (LinearLayout) view.findViewById(R.id.main_bikes_item_adminLayout);
             shareView = (TextView) view.findViewById(R.id.main_bikes_item_share);
+            gfView = (TextView) view.findViewById(R.id.main_bikes_item_delete);
         }
     }
 
@@ -69,6 +70,10 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
 
         holder.shareView.setOnClickListener(v ->{
             listener.shareActivity(car.getId());
+        });
+
+        holder.gfView.setOnClickListener(v ->{
+            listener.geoFencing(car.getId());
         });
 
     }
