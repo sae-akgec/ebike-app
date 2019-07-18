@@ -203,8 +203,10 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     @Override
-    public void settingActvity() {
-
+    public void settingActvity(String id) {
+        Intent intent = new Intent(getActivity(), ConnectActivity.class);
+        intent.putExtra("carId", id);
+        startActivity(intent);
 
     }
 

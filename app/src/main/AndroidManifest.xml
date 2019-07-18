@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.BikeActivity" />
+        <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.AuthActivity" />
         <activity android:name=".activity.ConnectActivity">
 
