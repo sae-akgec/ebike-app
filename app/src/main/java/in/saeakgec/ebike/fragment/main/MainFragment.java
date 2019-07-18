@@ -209,9 +209,11 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     @Override
-    public void geoFencing(String id) {
+    public void geoFencing(String id, String latId, String lngId) {
         Intent intent = new Intent(getActivity(), ConnectActivity.class);
         intent.putExtra("carId", id);
+        intent.putExtra("latId", latId);
+        intent.putExtra("lngId", lngId);
         startActivity(intent);
     }
 }

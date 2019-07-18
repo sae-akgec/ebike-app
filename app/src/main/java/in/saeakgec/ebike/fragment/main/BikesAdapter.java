@@ -73,7 +73,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
         });
 
         holder.gfView.setOnClickListener(v ->{
-            listener.geoFencing(car.getId());
+            listener.geoFencing(car.getCarStatus().getGfLimit(), car.getCarStatus().getGfLat(), car.getCarStatus().getGfLon());
         });
 
     }

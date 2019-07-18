@@ -14,7 +14,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,6 @@ import com.google.android.gms.maps.model.LatLng;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.services.Constants;
 import in.saeakgec.ebike.services.Util;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks,
@@ -49,7 +47,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     @BindView(R.id.connect_map_shutdown)
     Button button;
 
-    private float gfRadius;
+    private float gfRadius, gfLat, gfLng;
 
     private Address address;
     public static String strAddress = null, s_address;
@@ -72,6 +70,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         ButterKnife.bind(this, view);
 
         gfRadius = Float.parseFloat(getActivity().getIntent().getStringExtra("carId"));
+        gfLat = Float.parseFloat(getActivity().getIntent().getStringExtra("latId"));
+        gfLng = Float.parseFloat(getActivity().getIntent().getStringExtra("lngId"));
 
         if (Util.isPermissionRequired(getActivity())) {
             Util.requestPermission(getActivity(), REQUEST_PERMISSIONS_REQUEST_CODE);
@@ -111,7 +111,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
 
             googleMap.getUiSettings().setMyLocationButtonEnabled(true);
             CircleOptions circleOptions = new CircleOptions()
-                    .center(Constants.BAY_AREA_LANDMARKS.get("SFO"))
+                    .center(new LatLng(gfLat, gfLng))
                     .radius(gfRadius)
                     .fillColor(0x40ff0000)
                     .strokeColor(Color.TRANSPARENT)
