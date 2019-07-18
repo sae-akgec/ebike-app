@@ -3,14 +3,14 @@ package in.saeakgec.ebike.data.models;
 import com.google.gson.annotations.SerializedName;
 
 public class DriverHistoryModel {
-    @SerializedName("id")
+    @SerializedName("_id")
     private long id;
 
-    @SerializedName("ride_coordinates")
-    private String rideCoordinates;
+    @SerializedName("driver_name")
+    private String driverName;
 
-    @SerializedName("avg_speed")
-    private int avgSpeed;
+    @SerializedName("car_id")
+    private String carId;
 
     @SerializedName("start_time")
     private String startTime;
@@ -18,8 +18,18 @@ public class DriverHistoryModel {
     @SerializedName("end_time")
     private String endTime;
 
-    @SerializedName("bike")
-    private CarModel car;
+    @SerializedName("start_lat")
+    private String startLat;
+
+    @SerializedName("end_lat")
+    private String endLat;
+
+    @SerializedName("start_lng")
+    private String startLng;
+
+    @SerializedName("end_lng")
+    private String endLng;
+
 
     public DriverHistoryModel() {
     }
@@ -32,20 +42,20 @@ public class DriverHistoryModel {
         this.id = id;
     }
 
-    public String getRideCoordinates() {
-        return rideCoordinates;
+    public String getDriverName() {
+        return driverName;
     }
 
-    public void setRideCoordinates(String rideCoordinates) {
-        this.rideCoordinates = rideCoordinates;
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
     }
 
-    public int getAvgSpeed() {
-        return avgSpeed;
+    public String getCarId() {
+        return carId;
     }
 
-    public void setAvgSpeed(int avgSpeed) {
-        this.avgSpeed = avgSpeed;
+    public void setCarId(String carId) {
+        this.carId = carId;
     }
 
     public String getStartTime() {
@@ -64,11 +74,35 @@ public class DriverHistoryModel {
         this.endTime = endTime;
     }
 
-    public CarModel getBike() {
-        return car;
+    public String getStartLat() {
+        return startLat;
     }
 
-    public void setBike(CarModel car) {
-        this.car = car;
+    public void setStartLat(String startLat) {
+        this.startLat = startLat;
+    }
+
+    public String getEndLat() {
+        return endLat;
+    }
+
+    public void setEndLat(String endLat) {
+        this.endLat = endLat;
+    }
+
+    public String getStartLng() {
+        return startLng;
+    }
+
+    public void setStartLng(String startLng) {
+        this.startLng = startLng;
+    }
+
+    public String getEndLng() {
+        return endLng;
+    }
+
+    public void setEndLng(String endLng) {
+        this.endLng = endLng;
     }
 }

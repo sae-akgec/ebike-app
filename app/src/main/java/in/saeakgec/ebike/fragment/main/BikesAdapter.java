@@ -11,15 +11,14 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import in.saeakgec.ebike.R;
 import in.saeakgec.ebike.data.models.CarModel;
-import in.saeakgec.ebike.data.models.DriverCarModel;
 
 public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder> {
 
-    private ArrayList<DriverCarModel> driverBikes;
+    private List<CarModel> driverBikes;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private SimpleDraweeView imageView;
@@ -34,7 +33,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
         }
     }
 
-    public BikesAdapter(ArrayList<DriverCarModel> driverBikes) {
+    public BikesAdapter(List<CarModel> driverBikes) {
         this.driverBikes = driverBikes;
     }
 
@@ -47,17 +46,12 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
-        DriverCarModel driverBike = driverBikes.get(i);
-        CarModel car = driverBike.getCar();
+        CarModel car = driverBikes.get(i);
         Uri uri = Uri.parse(car.getImage());
-        holder.textView.setText(car.getNumber());
+        holder.textView.setText(car.getCarNumber());
         holder.imageView.setImageURI(uri);
 
-        if (car.getAdmin() == driverBike.getUser()) {
-            holder.adminLayout.setVisibility(View.VISIBLE);
-        } else {
-            holder.adminLayout.setVisibility(View.GONE);
-        }
+        holder.adminLayout.setVisibility(View.VISIBLE);
 
     }
 
@@ -66,7 +60,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
         return driverBikes.size();
     }
 
-    public void setDriverBikes(ArrayList<DriverCarModel> driverBikes) {
+    public void setDriverBikes(List<CarModel> driverBikes) {
         this.driverBikes = driverBikes;
     }
 }

@@ -1,8 +1,9 @@
 package in.saeakgec.ebike.data.network;
 
-import in.saeakgec.ebike.data.models.DriverCarModel;
+import java.util.List;
+
+import in.saeakgec.ebike.data.models.CarModel;
 import in.saeakgec.ebike.data.models.DriverHistoryModel;
-import in.saeakgec.ebike.data.models.ListModel;
 import in.saeakgec.ebike.data.models.RegisterModel;
 import in.saeakgec.ebike.data.models.SignInModel;
 import in.saeakgec.ebike.data.models.TokenModel;
@@ -20,14 +21,14 @@ public interface ApiService {
     @POST("/api/auth/register/")
     Single<Response<Object>> signUp(@Body RegisterModel registerModel);
 
-    @GET("/api/user/me/")
+    @GET("/api/users/me/")
     Single<Response<Object>> checkAuth();
 
-    @GET("/api/user/cars")
-    Single<Response<ListModel<DriverCarModel>>> getAllcars();
+    @GET("/api/users/cars")
+    Single<Response<List<CarModel>>> getAllcars();
 
-    @GET("/api/user/history")
-    Single<Response<ListModel<DriverHistoryModel>>> getAllhistory();
+    @GET("/api/users/history")
+    Single<Response<List<DriverHistoryModel>>> getAllhistory();
 
 
 }
