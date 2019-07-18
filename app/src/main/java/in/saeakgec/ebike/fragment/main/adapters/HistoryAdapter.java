@@ -1,4 +1,4 @@
-package in.saeakgec.ebike.fragment.main;
+package in.saeakgec.ebike.fragment.main.adapters;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;

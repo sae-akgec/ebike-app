@@ -1,9 +1,12 @@
-package in.saeakgec.ebike.fragment.main;
+package in.saeakgec.ebike.fragment.main.adapters;
 
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import in.saeakgec.ebike.fragment.main.HistoryFragment;
+import in.saeakgec.ebike.fragment.main.MainFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 

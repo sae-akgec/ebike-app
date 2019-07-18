@@ -86,7 +86,7 @@
                 android:textSize="14sp"
                 />
             <TextView
-                android:id="@+id/main_bikes_item_fingerprint"
+                android:id="@+id/main_bikes_item_settings"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

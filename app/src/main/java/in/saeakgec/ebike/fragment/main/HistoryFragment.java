@@ -24,6 +24,7 @@ import in.saeakgec.ebike.R;
 import in.saeakgec.ebike.data.models.DriverHistoryModel;
 import in.saeakgec.ebike.data.network.ApiClient;
 import in.saeakgec.ebike.data.network.ApiService;
+import in.saeakgec.ebike.fragment.main.adapters.HistoryAdapter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;

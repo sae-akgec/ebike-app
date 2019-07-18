@@ -1,5 +1,6 @@
 package in.saeakgec.ebike.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class SplashActivity extends AppCompatActivity {
         checkAuth();
     }
 
+    @SuppressLint("CheckResult")
     public void checkAuth() {
         apiService.checkAuth()
                 .subscribeOn(Schedulers.io())

@@ -1,4 +1,4 @@
-package in.saeakgec.ebike.fragment.main;
+package in.saeakgec.ebike.fragment.main.adapters;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -24,7 +24,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private SimpleDraweeView imageView;
-        private TextView textView, connectView, shareView, gfView;
+        private TextView textView, connectView, shareView, gfView, settingView;
         private LinearLayout adminLayout;
 
         public MyViewHolder(View view) {
@@ -35,6 +35,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
             adminLayout = (LinearLayout) view.findViewById(R.id.main_bikes_item_adminLayout);
             shareView = (TextView) view.findViewById(R.id.main_bikes_item_share);
             gfView = (TextView) view.findViewById(R.id.main_bikes_item_delete);
+            settingView = (TextView) view.findViewById(R.id.main_bikes_item_settings);
         }
     }
 
@@ -74,6 +75,10 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
 
         holder.gfView.setOnClickListener(v ->{
             listener.geoFencing(car.getCarStatus().getGfLimit(), car.getCarStatus().getGfLat(), car.getCarStatus().getGfLon());
+        });
+
+        holder.settingView.setOnClickListener(v ->{
+            listener.settingActvity(car.getId());
         });
 
     }
