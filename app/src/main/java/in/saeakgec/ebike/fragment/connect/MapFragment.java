@@ -33,7 +33,7 @@ import com.google.android.gms.maps.model.LatLng;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.services.Util;
+import in.saeakgec.ebike.utils.Util;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {

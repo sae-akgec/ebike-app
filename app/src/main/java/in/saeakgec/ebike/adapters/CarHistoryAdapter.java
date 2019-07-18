@@ -1,4 +1,4 @@
-package in.saeakgec.ebike.fragment.main.adapters;
+package in.saeakgec.ebike.adapters;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -15,7 +15,7 @@ import java.util.List;
 import in.saeakgec.ebike.R;
 import in.saeakgec.ebike.data.models.DriverHistoryModel;
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
+public class CarHistoryAdapter extends RecyclerView.Adapter<CarHistoryAdapter.MyViewHolder> {
 
     private List<DriverHistoryModel> driverHistory;
 
@@ -31,7 +31,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
         }
     }
 
-    public HistoryAdapter(List<DriverHistoryModel> driverHistory) {
+    public CarHistoryAdapter(List<DriverHistoryModel> driverHistory) {
         this.driverHistory = driverHistory;
     }
 
@@ -46,7 +46,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         DriverHistoryModel driverBike = driverHistory.get(i);
         Uri uri = Uri.parse("https://i.imgur.com/8HSge50.png");
-        holder.numberTextView.setText("bravado19");
+        holder.numberTextView.setText(driverBike.getDriverName());
+        holder.timeTextView.setText(driverBike.getStartTime().substring(4, 15));
         holder.imageView.setImageURI(uri);
 
 

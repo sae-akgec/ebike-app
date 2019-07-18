@@ -90,15 +90,10 @@ public class ShareActivity extends AppCompatActivity {
 
     public void showSnackBar(String msg) {
         final Snackbar snackbar = Snackbar.make(constraintLayout, msg, Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("CLOSE", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                snackbar.dismiss();
-            }
-        });
+        snackbar.setAction("CLOSE", view -> snackbar.dismiss());
         snackbar.setActionTextColor(Color.WHITE);
         View sbView = snackbar.getView();
-        TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+        TextView textView = sbView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.YELLOW);
         snackbar.show();
     }

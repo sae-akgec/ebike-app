@@ -1,4 +1,4 @@
-package in.saeakgec.ebike.services;
+package in.saeakgec.ebike.utils;
 
 import com.google.android.gms.maps.model.LatLng;
 

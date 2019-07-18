@@ -23,13 +23,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.saeakgec.ebike.R;
-import in.saeakgec.ebike.activity.ConnectActivity;
+import in.saeakgec.ebike.activity.GeoFencingActivity;
 import in.saeakgec.ebike.activity.SettingActivity;
 import in.saeakgec.ebike.activity.ShareActivity;
 import in.saeakgec.ebike.data.models.CarModel;
 import in.saeakgec.ebike.data.network.ApiClient;
 import in.saeakgec.ebike.data.network.ApiService;
-import in.saeakgec.ebike.fragment.main.adapters.BikesAdapter;
+import in.saeakgec.ebike.adapters.BikesAdapter;
 import in.saeakgec.ebike.listener.BikesAdapterListener;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
@@ -214,7 +214,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Override
     public void geoFencing(String id, String latId, String lngId) {
-        Intent intent = new Intent(getActivity(), ConnectActivity.class);
+        Intent intent = new Intent(getActivity(), GeoFencingActivity.class);
         intent.putExtra("carId", id);
         intent.putExtra("latId", latId);
         intent.putExtra("lngId", lngId);

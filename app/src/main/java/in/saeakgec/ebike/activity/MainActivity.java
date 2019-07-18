@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import in.saeakgec.ebike.R;
 import in.saeakgec.ebike.data.utils.PrefUtils;
-import in.saeakgec.ebike.fragment.main.adapters.ViewPagerAdapter;
+import in.saeakgec.ebike.adapters.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

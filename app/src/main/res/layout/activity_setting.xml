@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:elevation="5dp"
+    android:id="@+id/car_main_layout"
     android:background="@color/colorBackground">
 
     <android.support.constraint.ConstraintLayout
@@ -14,7 +15,7 @@
         android:background="#E0E0E0">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/bike_main_avatar"
+            android:id="@+id/car_main_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/wheel"
@@ -24,27 +25,29 @@
             android:layout_margin="15dp" />
 
         <TextView
+            android:id="@+id/car_main_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="@color/colorBlack"
-            app:layout_constraintLeft_toRightOf="@+id/bike_main_avatar"
+            app:layout_constraintLeft_toRightOf="@+id/car_main_avatar"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="30dp"
             android:text="BRAVADO SUPRA"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/car_main_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20"
+            android:text="ON"
             android:textSize="16sp"
             android:textColor="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/bike_main_battery"
+            app:layout_constraintRight_toLeftOf="@+id/car_main_speed"
             android:layout_margin="20dp" />
         <TextView
-            android:id="@+id/bike_main_battery"
+            android:id="@+id/car_main_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="68%"
@@ -70,7 +73,7 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/bike_share_recyclerView"
+        android:id="@+id/car_share_recyclerView"
         android:background="@color/colorWhite"
         android:layout_marginHorizontal="15dp"
         android:layout_weight="1" />
@@ -80,27 +83,27 @@
         android:paddingVertical="20dp"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/bike_main_delete"
+            android:id="@+id/car_main_revoke"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="5dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Delete Bike"
+            android:text="Revoke Access"
             android:textColor="@color/colorWhite"
             android:textSize="12sp" />
         <Button
-            android:id="@+id/bike_main_share"
+            android:id="@+id/car_main_request"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="5dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Share Access"
+            android:text="Requests"
             android:textColor="@color/colorWhite"
             android:textSize="12sp" />
         <Button
-            android:id="@+id/bike_main_fingerprint"
+            android:id="@+id/car_main_history"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

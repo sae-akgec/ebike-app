@@ -29,6 +29,9 @@ public interface ApiService {
     @GET("/api/users/cars")
     Single<Response<List<CarModel>>> getAllcars();
 
+    @GET("/api/cars/{id}")
+    Single<Response<CarModel>> getCarById(@Path("id") String id);
+
     @GET("/api/users/history")
     Single<Response<List<DriverHistoryModel>>> getAllhistory();
 
@@ -40,4 +43,7 @@ public interface ApiService {
 
     @POST("/api/cars/share/")
     Single<Response<Object>> share(@Body ShareCarModel shareCarModel);
+
+    @GET("/api/history/car/{id}")
+    Single<Response<List<DriverHistoryModel>>> getCarHistory(@Path("id") String carId);
 }

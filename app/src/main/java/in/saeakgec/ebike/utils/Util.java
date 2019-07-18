@@ -1,4 +1,4 @@
-package in.saeakgec.ebike.services;
+package in.saeakgec.ebike.utils;
 
 import android.Manifest;
 import android.app.Activity;

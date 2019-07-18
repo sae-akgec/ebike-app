@@ -1,4 +1,4 @@
-package in.saeakgec.ebike.fragment.main.adapters;
+package in.saeakgec.ebike.adapters;
 
 
 import android.support.v4.app.Fragment;
