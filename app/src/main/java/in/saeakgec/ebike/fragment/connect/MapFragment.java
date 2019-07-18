@@ -49,6 +49,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
     @BindView(R.id.connect_map_shutdown)
     Button button;
 
+    private float gfRadius;
+
     private Address address;
     public static String strAddress = null, s_address;
     private LocationManager locationManager;
@@ -68,6 +70,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         View view = inflater.inflate(R.layout.fragment_map, container, false);
 
         ButterKnife.bind(this, view);
+
+        gfRadius = Float.parseFloat(getActivity().getIntent().getStringExtra("carId"));
 
         if (Util.isPermissionRequired(getActivity())) {
             Util.requestPermission(getActivity(), REQUEST_PERMISSIONS_REQUEST_CODE);
@@ -106,10 +110,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
             }
 
             googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-            Log.v("onActivityResult", " nullllllllll--" + myLocation);
             CircleOptions circleOptions = new CircleOptions()
                     .center(Constants.BAY_AREA_LANDMARKS.get("SFO"))
-                    .radius(Constants.GEOFENCE_RADIUS_IN_METERS)
+                    .radius(gfRadius)
                     .fillColor(0x40ff0000)
                     .strokeColor(Color.TRANSPARENT)
                     .strokeWidth(2);
