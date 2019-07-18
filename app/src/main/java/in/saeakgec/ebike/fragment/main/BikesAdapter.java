@@ -15,26 +15,30 @@ import java.util.List;
 
 import in.saeakgec.ebike.R;
 import in.saeakgec.ebike.data.models.CarModel;
+import in.saeakgec.ebike.listener.BikesAdapterListener;
 
 public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder> {
 
     private List<CarModel> driverBikes;
+    private BikesAdapterListener listener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private SimpleDraweeView imageView;
-        private TextView textView;
+        private TextView textView, connectView;
         private LinearLayout adminLayout;
 
         public MyViewHolder(View view) {
             super(view);
             textView = (TextView) view.findViewById(R.id.main_bikes_item_number);
             imageView = (SimpleDraweeView) view.findViewById(R.id.main_bikes_item_avatar);
+            connectView = (TextView) view.findViewById(R.id.main_bikes_item_connect);
             adminLayout = (LinearLayout) view.findViewById(R.id.main_bikes_item_adminLayout);
         }
     }
 
-    public BikesAdapter(List<CarModel> driverBikes) {
+    public BikesAdapter(List<CarModel> driverBikes, BikesAdapterListener listener) {
         this.driverBikes = driverBikes;
+        this.listener = listener;
     }
 
     @NonNull
@@ -50,8 +54,20 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.MyViewHolder
         Uri uri = Uri.parse(car.getImage());
         holder.textView.setText(car.getCarNumber());
         holder.imageView.setImageURI(uri);
-
-        holder.adminLayout.setVisibility(View.VISIBLE);
+        if(car.getCarStatus().isStatus()){
+            holder.connectView.setText("Turn Off");
+        } else {
+            holder.connectView.setText("Turn On");
+        }
+        holder.connectView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(car.getCarStatus().isStatus())
+                    listener.turnOff(car.getId());
+                else
+                    listener.turnOn(car.getId());
+            }
+        });
 
     }
 

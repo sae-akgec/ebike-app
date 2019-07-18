@@ -12,6 +12,7 @@ import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiService {
 
@@ -30,5 +31,9 @@ public interface ApiService {
     @GET("/api/users/history")
     Single<Response<List<DriverHistoryModel>>> getAllhistory();
 
+    @GET("/api/users/on/{id}")
+    Single<Response<Object>> turnOn(@Path("id") String id);
 
+    @GET("/api/users/off/{id}")
+    Single<Response<Object>> turnOff(@Path("id") String id);
 }

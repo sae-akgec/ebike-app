@@ -24,6 +24,7 @@ import in.saeakgec.ebike.R;
 import in.saeakgec.ebike.data.models.CarModel;
 import in.saeakgec.ebike.data.network.ApiClient;
 import in.saeakgec.ebike.data.network.ApiService;
+import in.saeakgec.ebike.listener.BikesAdapterListener;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -32,7 +33,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, BikesAdapterListener {
 
     @BindView(R.id.main_bikes_swipe_container)
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -63,7 +64,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         driverBikes = new ArrayList<>();
 
-        bikesAdapter = new BikesAdapter(driverBikes);
+        bikesAdapter = new BikesAdapter(driverBikes, this);
         recyclerView.setAdapter(bikesAdapter);
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -138,4 +139,61 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
 
+    @Override
+    public void shareActivity() {
+
+    }
+
+    @Override
+    public void turnOn(String id) {
+        this.apiService.turnOn(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<Response<Object>>() {
+                    @Override
+                    public void onSuccess(Response<Object> response) {
+                        if (response.code() == 200) {
+                            showSnackBar("Car turned on");
+                            getBikes();
+                        } else {
+                            showSnackBar("Unable to turn on car");
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        showSnackBar("No internet connection!");
+                    }
+                });
+    }
+
+    @Override
+    public void turnOff(String id) {
+        this.apiService.turnOn(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<Response<Object>>() {
+                    @Override
+                    public void onSuccess(Response<Object> response) {
+                        if (response.code() == 200) {
+                            showSnackBar("Car turned off");
+                            getBikes();
+                        } else {
+                            showSnackBar("Unable to turn off car");
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        showSnackBar("No internet connection!");
+                    }
+                });
+    }
+
+    @Override
+    public void settingActvity() {
+
+    }
 }
